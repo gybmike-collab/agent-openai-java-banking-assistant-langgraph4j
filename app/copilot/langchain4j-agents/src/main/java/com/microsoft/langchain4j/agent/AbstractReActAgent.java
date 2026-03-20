@@ -50,7 +50,7 @@ public abstract class AbstractReActAgent implements Agent {
 
             var aiMessage = chatModel.chat(request).aiMessage();
 
-            // ReAct planning with tools
+            //使用工具进行 ReAct 规划
             while (aiMessage != null && aiMessage.hasToolExecutionRequests()) {
                 List<ToolExecutionResultMessage> toolExecutionResultMessages = executeToolRequests(aiMessage.toolExecutionRequests());
 
@@ -67,7 +67,7 @@ public abstract class AbstractReActAgent implements Agent {
 
             LOGGER.info("Agent response: {}", aiMessage.text());
 
-            // add last ai message to agent internal memory
+            //将最后一条 AI 消息加入智能体内部记忆
             internalChatMemory.add(aiMessage);
             return buildResponse(chatHistory, internalChatMemory);
         } catch (Exception e) {

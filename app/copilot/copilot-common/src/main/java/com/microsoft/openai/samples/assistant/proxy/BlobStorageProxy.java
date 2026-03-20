@@ -39,7 +39,7 @@ public class BlobStorageProxy {
         var blobClient = client.getBlobClient(fileName);
         int dataSize = (int) blobClient.getProperties().getBlobSize();
 
-        // There is no need to close ByteArrayOutputStream.
+        //不需要关闭 ByteArrayOutputStream。
         // https://docs.oracle.com/javase/8/docs/api/java/io/ByteArrayOutputStream.html
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(dataSize);
         blobClient.downloadStream(outputStream);

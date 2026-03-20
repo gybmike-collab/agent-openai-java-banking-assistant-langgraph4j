@@ -9,7 +9,7 @@ import java.util.*;
 public class AgentWorkflowState extends MessagesState<ChatMessage>  {
 
 
-    // Required by Jackson Serialization
+    //Jackson 序列化所需
     public AgentWorkflowState() {
         super( Map.of() );
     }

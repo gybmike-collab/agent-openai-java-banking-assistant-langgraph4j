@@ -65,7 +65,7 @@ public class RestClientToolExecutor implements ToolExecutor {
     }
 
     /**
-     * Executes the HTTP request and return the body of the response.
+     * 执行 HTTP 请求，并返回响应体。
      */
     private String executeFake(ToolExecutionRequest toolExecutionRequest, Object memoryId) {
 
@@ -101,7 +101,7 @@ public class RestClientToolExecutor implements ToolExecutor {
     private String executeOriginal(ToolExecutionRequest toolExecutionRequest, Object memoryId) {
 
 
-        // Use jackson to convert the json string to a Map<string,Object>
+        //使用 Jackson 将 JSON 字符串转换为 Map<string,Object>
         Map<String,Object> arguments = ToolExecutionRequestUtil.argumentsAsMap(toolExecutionRequest.arguments());
 
 
@@ -171,9 +171,9 @@ public class RestClientToolExecutor implements ToolExecutor {
     }
 
     /**
-     * Builds the query string for the HTTP request.
-     * @param arguments The arguments to the HTTP request.
-     * @return The query string.
+     * 为 HTTP 请求构建查询字符串。
+     * @param arguments HTTP 请求参数。
+     * @return 查询字符串。
      */
     protected String buildQueryString(Map<String,Object> arguments) {
         return getParameterStreamOfArguments(arguments)
@@ -187,9 +187,9 @@ public class RestClientToolExecutor implements ToolExecutor {
     }
 
     /**
-     * Builds the path string for the HTTP request.
-     * @param arguments The arguments to the HTTP request.
-     * @return The path string.
+     * 为 HTTP 请求构建路径字符串。
+     * @param arguments HTTP 请求参数。
+     * @return 路径字符串。
      */
     protected String buildQueryPath(Map<String,Object> arguments) {
         return getParameterStreamOfArguments(arguments)
@@ -203,10 +203,10 @@ public class RestClientToolExecutor implements ToolExecutor {
     }
 
 /**
- * For all the arguments contained in the arguments map, return the parameters in OpenAPI specification that match the arguments names.
+ * 对 arguments 映射中包含的所有参数，返回在 OpenAPI 规范中与参数名匹配的参数。
  *
- * @param arguments The map of arguments to match against the OpenAPI parameters.
- * @return A stream of parameters that match the argument names.
+ * @param arguments 用于与 OpenAPI 参数进行匹配的参数映射。
+ * @return 与参数名匹配的参数流。
  */
 protected Stream<Parameter> getParameterStreamOfArguments(
             Map<String,Object> arguments) {

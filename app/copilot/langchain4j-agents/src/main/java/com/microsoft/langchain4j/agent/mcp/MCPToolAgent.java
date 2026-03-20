@@ -40,11 +40,11 @@ public abstract class MCPToolAgent extends AbstractReActAgent {
         this.extendedExecutorMap = new HashMap<>();
 
         mcpServerMetadata.forEach(metadata -> {
-            //only SSE is supported
+            //仅支持 SSE
             if(metadata.protocolType().equals(MCPProtocolType.SSE)){
                 McpTransport transport = new HttpMcpTransport.Builder()
                         .sseUrl(metadata.url())
-                        .logRequests(true) // if you want to see the traffic in the log
+                        .logRequests(true) //如需在日志中查看请求/响应流量，可保留该选项
                         .logResponses(true)
                         .timeout(Duration.ofHours(3))
                         .build();
@@ -84,7 +84,7 @@ public abstract class MCPToolAgent extends AbstractReActAgent {
 
             String result = "ko";
 
-            // try first the extended executors
+            //优先尝试扩展执行器（extended executors）
             var toolExecutor = extendedExecutorMap.get(toolExecutionRequest.name());
             if( toolExecutor != null){
                 LOGGER.info("Executing {} with params {}", toolExecutionRequest.name(), toolExecutionRequest.arguments());

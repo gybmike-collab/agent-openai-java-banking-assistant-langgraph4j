@@ -91,7 +91,7 @@ public class Langgraph4JAgentsConfiguration {
                 .addEdge( Intent.PaymentAgent.name(), END )
         ;
 
-        //this will manage the chat conversation history per threadId
+        //该功能会按 threadId 管理聊天会话历史
         var checkPointSaver = new MemorySaver();
 
         var config = CompileConfig.builder()

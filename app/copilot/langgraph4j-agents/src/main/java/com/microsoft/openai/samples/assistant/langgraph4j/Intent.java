@@ -9,9 +9,9 @@ public enum Intent {
     PaymentAgent;
 
     /**
-     * Returns a list of all possible names of the {@code Intent} enum constants.
+     * 返回所有 {@code Intent} 枚举常量可用的名称列表。
      *
-     * @return an unmodifiable list containing the names of the {@code Intent} enum constants
+     * @return 包含 {@code Intent} 枚举常量名称的不可修改列表
      */
     public static List<String> names() {
         return Arrays.stream(Intent.values())

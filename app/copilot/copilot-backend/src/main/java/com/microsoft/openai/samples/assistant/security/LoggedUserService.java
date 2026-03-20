@@ -11,16 +11,16 @@ public class LoggedUserService {
     public LoggedUser getLoggedUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        //this is always true in the PoC code
+        //在 PoC 代码中这始终为 true
         if(authentication == null) {
            return getDefaultUser();
         }
-        //this code is never executed in the PoC. It's a hook for future improvements requiring integration with authentication providers.
+        //该代码在 PoC 中不会被执行，用作未来与认证提供方集成后的扩展钩子。
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserName = authentication.getName();
 
             Object details = authentication.getDetails();
-            //object should be cast to specific type based on the authentication provider
+            //需要根据认证提供方将对象转换为对应的具体类型。
             return new LoggedUser(currentUserName, "changeme@contoso.com", "changeme", "changeme");
         }
         return getDefaultUser();

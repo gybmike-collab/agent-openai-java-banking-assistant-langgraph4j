@@ -45,7 +45,7 @@ public class RequestBodyUtil {
                 case "array":
                     jsonSchemaElement = JsonArraySchema.builder().description(description).build();
                     break;
-                // Not sure if we can support this
+                //不确定是否能支持该类型
                 case "null":
                     break;
                 case "object":

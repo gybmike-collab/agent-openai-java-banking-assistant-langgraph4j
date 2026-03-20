@@ -56,7 +56,7 @@ public class ChatLanggraph4JController {
         List<ChatMessage> chatHistory = convertToLangchain4j(chatRequest);
 
 
-        //It contains only the last user message
+        //它只包含最后一条用户消息
         LOGGER.debug("Processing user message..", chatHistory.get(chatHistory.size()-1));
 
         String threadId = chatRequest.threadId();

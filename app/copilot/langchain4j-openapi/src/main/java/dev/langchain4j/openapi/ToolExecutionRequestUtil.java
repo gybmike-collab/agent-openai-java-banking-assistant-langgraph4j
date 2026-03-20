@@ -37,9 +37,9 @@ public class ToolExecutionRequestUtil {
     };
 
     /**
-     * Convert arguments to map.
+     * 将 arguments 转换为 map。
      *
-     * @param arguments json string
+     * @param arguments json 字符串
      * @return map
      */
     static Map<String, Object> argumentsAsMap(String arguments) {
@@ -47,10 +47,10 @@ public class ToolExecutionRequestUtil {
     }
 
     /**
-     * Removes trailing commas before closing braces or brackets in JSON strings.
+     * 在 JSON 字符串中于右括号/右中括号之前移除尾部逗号。
      *
-     * @param json the JSON string
-     * @return the corrected JSON string
+     * @param json JSON 字符串
+     * @return 已修正的 JSON 字符串
      */
     static String removeTrailingComma(String json) {
         if (json == null || json.isEmpty()) {

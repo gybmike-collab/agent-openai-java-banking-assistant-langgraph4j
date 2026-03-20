@@ -164,7 +164,7 @@ public class OpenAPIToolsImporter {
         @Nullable Integer readTimeout) {
 
 
-        //TODO - Http connection pooling
+        //TODO - HTTP 连接池
 
         if( client == null){
             LOGGER.debug("Creating langchain4j default HttpClient");
@@ -271,7 +271,7 @@ public class OpenAPIToolsImporter {
         Map<String, JsonSchemaElement> properties = new HashMap<>();
         List<String> requiredList = new ArrayList<>();
 
-       //create function params for path and query params available in the operation spec.
+       //为 operation spec 中的路径参数和查询参数创建函数参数。
         if (parameters != null && !parameters.isEmpty()) {
             parameters.forEach(parameter -> {
                 JsonSchemaElement jsonSchemaElement = getJsonSchemaElement(parameter);
@@ -282,7 +282,7 @@ public class OpenAPIToolsImporter {
             });
         }
 
-        //create requestBody params if present. It's serialized as json in a string with description
+        //如有请求体参数，将其以带 description 的 JSON 字符串形式序列化。
         RequestBody requestBody = operation.getRequestBody();
 
         if (requestBody != null) {
@@ -330,7 +330,7 @@ public class OpenAPIToolsImporter {
                     jsonSchemaElement = JsonArraySchema.builder().description(parameter.getDescription()).build();
                     break;
 
-                // Not sure if we can support this
+                //不确定是否能支持该类型
                 case "null":
                     break;
                 case "object":

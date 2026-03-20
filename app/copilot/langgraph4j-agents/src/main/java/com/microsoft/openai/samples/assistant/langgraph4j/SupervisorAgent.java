@@ -26,7 +26,7 @@ public class SupervisorAgent {
     private final ChatLanguageModel chatLanguageModel;
     private final Map<String, AgentMetadata> agentsMetadata;
     private final Prompt agentPrompt;
-    //When false only detect the next agent but doesn't route to it. It will answer with the agent name.
+    //当为 false 时，仅检测下一个 agent，但不会进行路由；将直接返回 agent 名称。
 
    private final String SUPERVISOR_AGENT_SINGLETURN_SYSTEM_MESSAGE = """
         You are a banking customer support agent triaging conversation and select the best agent name that can solve the customer need.
@@ -65,14 +65,14 @@ public class SupervisorAgent {
 
 
     private ChatMemory buildInternalChat(List<ChatMessage> chatHistory) {
-        //build a new chat memory to preserve order of messages otherwise the model hallucinate.
+        //构建新的聊天记忆以保持消息顺序，否则模型可能会产生幻觉。
         var internalChatMemory = MessageWindowChatMemory.builder()
                 .id("default")
                 .maxMessages(20)
                 .build();
 
         internalChatMemory.add(dev.langchain4j.data.message.SystemMessage.from(agentPrompt.text()));
-        // filter out tool requests and tool execution results
+        //过滤掉工具调用请求和工具执行结果
         chatHistory.stream()
                 .filter(chatMessage -> {
                     if (chatMessage instanceof ToolExecutionResultMessage
