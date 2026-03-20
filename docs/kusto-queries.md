@@ -1,9 +1,9 @@
-# Useful Kusto queries to inspect tools calls
-By default all Azure Open AI requests and response are logged in the java application logs.
-The following Kusto queries can be used to inspect the tools calls requests and responses.
+# 用于检查工具调用的实用 Kusto 查询
+默认情况下，所有 Azure OpenAI 的请求与响应都会记录在 Java 应用日志中。
+可使用下列 Kusto 查询检查工具调用的请求与响应。
 
 
-### Inspect all Azure Open AI responses
+### 检查所有 Azure OpenAI 响应
 ```kusto
 traces
 | where cloud_RoleName == "copilot-api"
@@ -12,7 +12,7 @@ traces
 | where chatmessage["az.sdk.message"] == "HTTP response"
 | extend chatbody=parse_json(tostring(chatmessage.body)).choices[0]
 ```
-### Inspect all Azure Open AI requests
+### 检查所有 Azure OpenAI 请求
 ```kusto
 traces 
 | where cloud_RoleName == "copilot-api"
@@ -22,7 +22,7 @@ traces
 | extend chatbody=parse_json(tostring(parse_json(message).body))
 ```
 
-### Inspect all tools calls requests
+### 检查所有工具调用请求
 ```kusto
 traces
 | where cloud_RoleName == "copilot-api"
@@ -34,7 +34,7 @@ traces
 | extend tool_calls=parse_json(tostring(parse_json(tostring(response.message)).tool_calls))
 ```
 
-### Inspect all tools calls requests for TransactionHistoryPlugin function
+### 检查 TransactionHistoryPlugin 函数的工具调用请求
 ```kusto
 traces 
 | where cloud_RoleName == "copilot-api"

@@ -1,13 +1,13 @@
-### Agents Concepts and Architectures
+### 智能体概念与架构
 
-<img src="../assets/multi-agents.png" alt="" align="center"  />
+<img src="../assets/multi-agents.png" alt="多智能体架构示意图" align="center"  />
 
-The development of a vertical multi-agent architecture for a personal banking assistant is inspired by a blend of cutting-edge research and practical applications in the field of generative AI and agent-based systems:
+个人银行助手的垂直多智能体架构，综合了生成式 AI 与基于智能体系统中的前沿研究与落地实践：
 
-1. **Agent and Loop Mechanism**: An Agent is made up of three building blocks: Instructions (a.k.a prompt), Tools and LLM model to use. The core idea of agents is to use a language model like gpt4 to choose a sequence of actions, which can be supported by tools, in order to solve a task based on the instructions provided in the prompt. This can best be thought of as a loop where the agent iteratively processes user input, decides on actions or responses, and updates its internal state (agent scratchpad). This mechanism allows for complex interactions and task execution beyond simple text generation.
+1. **智能体与循环机制**：智能体由三部分组成：指令（即提示词）、工具、以及所使用的 LLM。智能体的核心思路是让语言模型（如 gpt4）根据提示中的指令，选择一系列可由工具支持的动作来完成任务。可将其理解为一个循环：智能体迭代处理用户输入、决定动作或回复，并更新内部状态（智能体草稿本）。该机制支持超出简单文本生成的复杂交互与任务执行。
 
-2. **Integration of AI Agents with LLMs and RAG**: AI agents enhance copilot application based on Retrieval Augmented Generation (RAG) pattern by enabling real-world task execution, decision-making, and real-time interaction. While in RAG a sequence of actions are well-known and are developed as a predefined LLM chain in app code, with agents a LLM is used as a reasoning engine to determine which actions to take and in which order.This integration is crucial for applications requiring dynamic responses and actions based on user inputs.
+2. **AI 智能体与 LLM、RAG 的结合**：AI 智能体在检索增强生成（RAG）模式的副驾应用中，支持真实世界任务执行、决策与实时交互。RAG 中动作序列是预先设计并在应用代码中固化为 LLM 链路的；而智能体则把 LLM 用作推理引擎，由模型决定执行哪些动作及顺序。对需要根据用户输入动态响应与行动的应用而言，这种结合十分重要。
 
-3. **Multi-Agent Architectures**: The debate between single and multi-agent systems highlights the versatility of multi-agent architectures in handling complex tasks requiring collaboration and multiple execution paths. Vertical and horizontal architectures represent two approaches, with most systems falling somewhere in between. Specifically, vertical architectures, where one agent acts as a leader coordinating with other specialized agents, are particularly relevant for building a personal banking assistant. This structure allows for a clear division of labor and efficient collaboration among agents with different functional domains.
+3. **多智能体架构**：关于单智能体与多智能体的讨论体现了多智能体架构在处理需协作、多路径执行的复杂任务时的灵活性。垂直与水平架构代表两种思路，多数系统介于两者之间。其中，由一个智能体作为领导者、与其它专职智能体协作的垂直架构，特别适合构建个人银行助手：分工明确，不同功能域的智能体可高效协作。
 
-5. **MicroAgents Concept**: The idea of MicroAgents, as proposed by the semantic kernel team at Microsoft, offers a practical approach for implementing vertical multi-agent systems. By partitioning agents by functional domain and associating each with a microservice, a banking assistant can leverage specialized knowledge and services (e.g., account management, transaction history, payments) to provide a comprehensive and user-friendly experience.
+4. **MicroAgents 概念**：Microsoft Semantic Kernel 团队提出的 MicroAgents 为落地垂直多智能体提供了务实路径：按功能域划分智能体，并与各自微服务对应，银行助手即可利用账户管理、交易历史、支付等领域的专有能力与服务，提供全面且易用的体验。

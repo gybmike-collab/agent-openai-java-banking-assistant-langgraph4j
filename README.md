@@ -19,8 +19,8 @@ products:
 - azure-monitor
 - azure-pipelines
 urlFragment: agent-openai-java-banking-assistant
-name: Multi Agents Banking Assistant with Java and Langchain4j
-description: A Java sample app emulating a personal banking AI-powered assistant to inquire about account balances, review recent transactions, or initiate payments
+name: 使用 Java 与 Langchain4j 的多智能体银行助手
+description: 用于模拟个人银行 AI 助手的 Java 示例应用，可查询账户余额、查看近期交易或发起付款
 ---
 <!-- YAML front-matter schema: https://review.learn.microsoft.com/en-us/help/contribute/samples/process/onboarding?branch=main#supported-metadata-fields-for-readmemd -->
 <!-- prettier-ignore -->
@@ -28,55 +28,55 @@ description: A Java sample app emulating a personal banking AI-powered assistant
 
 ![](./docs/assets/robot-agents-small.png)
 
-# Multi Agent Banking Assistant with Java using [Langraph4j]
+# 使用 Java 与 [Langraph4j] 的多智能体银行助手
 
-[![Open project in GitHub Codespaces](https://img.shields.io/badge/Codespaces-Open-blue?style=flat-square&logo=github)](https://codespaces.new/azure-samples/agent-openai-java-banking-assistant?hide_repo_select=true&ref=main&quickstart=true)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/azure-samples/agent-openai-java-banking-assistant/azure-dev.yaml?style=flat-square&label=Build)](https://github.com/azure-samples/agent-openai-java-banking-assistant/actions)
-![Java version](https://img.shields.io/badge/Java->=17-3c873a?style=flat-square)
-[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
+[![在 GitHub Codespaces 中打开项目](https://img.shields.io/badge/Codespaces-Open-blue?style=flat-square&logo=github)](https://codespaces.new/azure-samples/agent-openai-java-banking-assistant?hide_repo_select=true&ref=main&quickstart=true)
+[![构建状态](https://img.shields.io/github/actions/workflow/status/azure-samples/agent-openai-java-banking-assistant/azure-dev.yaml?style=flat-square&label=Build)](https://github.com/azure-samples/agent-openai-java-banking-assistant/actions)
+![Java 版本](https://img.shields.io/badge/Java->=17-3c873a?style=flat-square)
+[![许可证](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
 <!-- [![Watch how to use this sample on YouTube](https://img.shields.io/badge/YouTube-Watch-d95652.svg?style=flat-square&logo=youtube)]() -->
 
-:star: If you like this sample, star it on GitHub — it helps a lot!
+:star: 若您喜欢本示例，欢迎在 GitHub 上标星 — 对我们帮助很大！
 
-[Overview](#overview) • [Architecture](#agents-concepts-and-architectures) • [Get started](#getting-started) •  [Resources](#resources) • [FAQ](#faq) • [Troubleshooting](#troubleshooting)
+[概述](#overview) • [架构](#architecture) • [快速开始](#getting-started) • [资料](#resources) • [常见问题](#faq) • [疑难解答](#troubleshooting)
 
 ![](./docs/assets/ui.gif)
 </div>
 
 
-## Overview
-The core use case of this Proof of Concept (PoC) revolves around a banking personal assistant designed to revolutionize the way users interact with their bank account information, transaction history, and payment functionalities. Utilizing the power of generative AI within a multi-agent architecture, this assistant aims to provide a seamless, conversational interface through which users can effortlessly access and manage their financial data.
+## <span id="overview">概述</span>
+本概念验证（PoC）的核心场景是个人银行助手，旨在改变用户与银行账户信息、交易记录及支付功能交互的方式。在多智能体架构中运用生成式 AI，通过自然对话界面，让用户便捷地访问与管理金融数据。
 
-Instead of navigating through traditional web interfaces and menus, users can simply converse with the AI-powered assistant to inquire about their account balances, review recent transactions, or initiate payments. This approach not only enhances user experience by making financial management more intuitive and accessible but also leverages the existing workload data and APIs to ensure a reliable and secure service.
+用户无需在传统网页与菜单间跳转，只需与 AI 助手对话，即可查询余额、查看近期交易或发起付款。这种方式使理财更直观、易用；同时基于既有工作负载数据与 API，保证服务可靠、安全。
 
-Invoices samples are included in the data folder to make it easy to explore payments feature. The payment agent equipped with OCR tools ( Azure Document Intelligence) will lead the conversation with the user to extract the invoice data and initiate the payment process. Other account fake data as transactions, payment methods and account balance are also available to be queried by the user. All data and services are exposed as external REST APIs and [**MCP tools**][MCP] consumed by the agents to provide the user with the requested information.
+`data` 文件夹中提供了发票样例，便于体验支付功能。配备 OCR 工具（Azure 文档智能）的支付智能体会引导对话，提取发票数据并启动支付流程。另有交易、支付方式与余额等模拟账户数据可供查询。所有数据与服务均通过外部 REST API 及智能体消费的 [**MCP 工具**][MCP] 对外提供。
 
-## Features 
-This project provides the following features and technical patterns:
- - Simple multi-agent supervisor architecture using **gpt-4o-mini** or **gpt-4o** on Azure Open AI.
- - Exposing your business API as [MCP] tools for your agents using [spring-ai-mcp](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-overview.html)
- - Agents tools configuration and automatic tools invocations with [Langchain4j](https://github.com/langchain4j/langchain4j).
- - Multi-Agent Supervisor workflow management is developed using [Langgraph4j](https://github.com/bsorrentino/langgraph4j/) 
- - Chat based conversation implemented as [React Single Page Application](https://react.fluentui.dev/?path=/docs/concepts-introduction--docs) with support for images upload.Supported images are invoices, receipts, bills jpeg/png files you want your virtual banking assistant to pay on your behalf.
- - Images scanning and data extraction with Azure Document Intelligence using [prebuilt-invoice](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-invoice?view=doc-intel-4.0.0) model.
- - Add a copilot app side-by-side to your existing business microservices hosted on [Azure Container Apps](https://azure.microsoft.com/en-us/products/container-apps).
- - Automated Azure resources creation and solution deployment leveraging [Azure Developer CLI](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/).
+## <span id="features">功能</span>
+本项目提供以下功能与技术模式：
+ - 在 Azure OpenAI 上使用 **gpt-4o-mini** 或 **gpt-4o** 的简单多智能体主管架构。
+ - 通过 [spring-ai-mcp](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-overview.html) 将业务 API 暴露为智能体可用的 [MCP] 工具。
+ - 使用 [Langchain4j](https://github.com/langchain4j/langchain4j) 配置智能体工具并自动调用工具。
+ - 使用 [Langgraph4j](https://github.com/bsorrentino/langgraph4j/) 实现多智能体主管工作流管理。
+ - 基于聊天的会话界面为 [React 单页应用](https://react.fluentui.dev/?path=/docs/concepts-introduction--docs)，支持上传图片。支持的图片为发票、收据、账单等 jpeg/png，供虚拟银行助手代您付款。
+ - 使用 Azure 文档智能的 [预建发票](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-invoice?view=doc-intel-4.0.0) 模型进行票据扫描与数据提取。
+ - 在部署于 [Azure 容器应用](https://azure.microsoft.com/en-us/products/container-apps) 的现有业务微服务旁，并联部署副驾（Copilot）应用。
+ - 借助 [Azure Developer CLI](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/) 自动创建 Azure 资源并部署解决方案。
 
-### Architecture
+### <span id="architecture">架构</span>
 
 ![HLA](docs/assets/HLA-MCP.png)
 
-### Langgraph4j Multi-Agent Supervisor Workflow
+### Langgraph4j 多智能体主管工作流
 
 ```mermaid
 flowchart TD
 	__START__((start))
 	__END__((Human))
-	Supervisor("Supervisor Agent")
-	AccountAgent("Account Agent")
-	TransactionHistoryAgent("TransactionHistory Agent")
-	PaymentAgent("Payment Agent")
+	Supervisor("主管智能体")
+	AccountAgent("账户智能体")
+	TransactionHistoryAgent("交易历史智能体")
+	PaymentAgent("支付智能体")
 	%%	condition1{"check state"}
 	__START__:::__START__ --> Supervisor:::Supervisor
 	%%	Supervisor:::Supervisor -.-> condition1:::condition1
@@ -97,127 +97,125 @@ flowchart TD
 ```
 
 
-The personal banking assistant is designed as a [vertical multi-agent system](./docs/multi-agents/introduction.md), with each agent specializing in a specific functional domain (e.g., account management, transaction history, payments). The architecture consists of the following key components:
+个人银行助手采用[垂直多智能体系统](./docs/multi-agents/introduction.md)设计，各智能体专注于特定领域（如账户管理、交易历史、支付）。架构包含以下主要组件：
 
-- **Copilot Assistant Copilot App (Microservice)**: Serves as the central hub for processing user requests. It's a spring boot application implementing a vertical multi-agent architectures using  [Langgraph4j](https://github.com/bsorrentino/langgraph4j) for agentic workflow definition & management plus [Langchain4j](https://github.com/langchain4j/langchain4j) to create Agents equipped with tools. 
-Basically the Supervisor Agent understand user intent from chat interactions and routes the request to the appropriate domain-specific agent.
-    - **Supervisor Agent**: Acts as a user proxy, interpreting user intent based on chat inputs and directing the request to the specific domain agent. This component ensures that user queries are efficiently handled by the relevant agent. Agents are engaged byt the supervisor in a single turn conversation meaning that only one is selected by the supervisor to answer to user task. It’s just doing routing logic, assuming the domain agent will either carry-on the task in one shot or will involve user feedback if data oversight or action approval (like payment submit) is required.
+- **Copilot 助手应用（微服务）**：作为处理用户请求的中心枢纽。该 Spring Boot 应用实现垂直多智能体架构：用 [Langgraph4j](https://github.com/bsorrentino/langgraph4j) 定义与管理智能体工作流，用 [Langchain4j](https://github.com/langchain4j/langchain4j) 创建配备工具的智能体。
+主管智能体根据聊天理解用户意图，并将请求路由到对应领域智能体。
+    - **Supervisor Agent（主管智能体）**：作为用户代理，根据聊天输入理解意图并定向到具体领域智能体，确保问题由相关智能体高效处理。主管在每轮对话中只启用一个智能体来回应用户任务，仅做路由；假定领域智能体能一次完成任务，或在需要用户补充信息或确认操作（如提交付款）时再与用户交互。
     
-    - **Account Agent**: Specializes in handling tasks related to banking account information, credit balance, and registered payment methods. It leverages specific Account service APIs to fetch and manage account-related data.
+    - **Account Agent（账户智能体）**：处理与银行账户信息、可用额度、已登记支付方式相关的任务，通过账户服务 API 获取与管理账户数据。
 
-    - **Transactions Agent**: Focuses on tasks related to querying user bank movements, including income and outcome payments. This agent accesses account api to retrieve accountid and transaction history service to search for transactions and present them to the user.
+    - **Transactions Agent（交易智能体）**：专注于查询用户银行流水，包括收入与支出。该智能体访问账户 API 获取 accountId，并调用交易历史服务检索交易记录并展示给用户。
 
-    - **Payments Agent**: Dedicated to managing tasks related to submitting payments. It interacts with multiple APIs and tools, such as ScanInvoice (backed by Azure Document Intelligence), Account Service to retrieve account and payment methods info, Payment Service to submit payment processing and Transaction History service to check for previous paid invoices.
+    - **Payments Agent（支付智能体）**：负责提交付款类任务，与多种 API 与工具交互，例如 ScanInvoice（基于 Azure 文档智能）、账户服务（获取账户与支付方式）、支付服务（提交支付处理）以及交易历史服务（核对是否已支付过某张发票）。
 
-- **Existing Business APIs**: Interfaces with the backend systems to perform operations related to personal banking accounts, transactions, and invoice payments. These APIs are implemented as external spring boot microservices providing the necessary data and functionality consumed by agents to execute their tasks. They are exposed both as traditional RESTs API and as [MCP] tools to be consumed by agents.
-    - **Account Service (Microservice)**: Provides functionalities like retrieving account details by username, fetching payment methods, and getting registered beneficiaries. This microservice supports all 3 agents.
+- **既有业务 API**：对接后端系统，执行个人账户、交易与发票支付等操作。这些 API 以独立 Spring Boot 微服务实现，为智能体提供数据与能力；既以传统 REST 形式暴露，也以 [MCP] 工具形式供智能体调用。
+    - **Account Service（账户微服务）**：支持按用户名查询账户详情、获取支付方式、查询登记受益人等，三个领域智能体均会用到。
 
-    - **Payments Service (Microservice)**: Offers capabilities to submit payments and notify transactions. It is a critical component for the Payments Agent to execute payment-related tasks efficiently.
+    - **Payments Service（支付微服务）**：支持提交付款与通知交易，是支付智能体高效执行支付任务的关键。
 
-    - **Reporting Service (Microservice)**: Enables searching transactions and retrieving transactions by recipient. This service supports the Transactions Agent in providing detailed transaction reports to the user and the Payment Agent as it needs to check if an invoice has not been already paid.
+    - **Reporting Service（报表微服务）**：支持按条件搜索交易及按收款方查询交易，为交易智能体提供明细报表；支付智能体也需要用它核对某张发票是否已付过款。
 
-## Getting Started
+## <span id="getting-started">快速开始</span>
 
-### Run in GitHub Codespaces or VS Code Dev Containers
+### 在 GitHub Codespaces 或 VS Code Dev Containers 中运行
 
-You can run this repo virtually by using GitHub Codespaces or VS Code Dev Containers.  Click on one of the buttons below to open this repo in one of those options.
+您可通过 GitHub Codespaces 或 VS Code Dev Containers 在云端/容器内运行本仓库。点击下方任一按钮在对应环境中打开本仓库。
 
-[![Open in GitHub Codespaces](https://img.shields.io/static/v1?style=for-the-badge&label=GitHub+Codespaces&message=Open&color=brightgreen&logo=github)](https://codespaces.new/azure-samples/agent-openai-java-banking-assistant?hide_repo_select=true&ref=main&quickstart=true)
-[![Open in VS Code Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/agent-openai-java-banking-assistant/)
+[![在 GitHub Codespaces 中打开](https://img.shields.io/static/v1?style=for-the-badge&label=GitHub+Codespaces&message=Open&color=brightgreen&logo=github)](https://codespaces.new/azure-samples/agent-openai-java-banking-assistant?hide_repo_select=true&ref=main&quickstart=true)
+[![在 VS Code Dev Containers 中打开](https://img.shields.io/static/v1?style=for-the-badge&label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/agent-openai-java-banking-assistant/)
 
-All prerequisites are already installed in the container.  You can skip to the [Starting from scratch](#starting-from-scratch) section.
+容器内已预装全部依赖。可直接跳至[从零开始](#starting-from-scratch)一节。
 
-### Prerequisites
+### 先决条件
 
 * [Java 17](https://learn.microsoft.com/en-us/java/openjdk/download#openjdk-17)
 * [Maven 3.8.x](https://maven.apache.org/download.cgi)
 * [Azure Developer CLI](https://aka.ms/azure-dev/install)
 * [Node.js](https://nodejs.org/en/download/)
 * [Git](https://git-scm.com/downloads)
-* [Powershell 7+ (pwsh)](https://github.com/powershell/powershell) - For Windows users only.
-  * **Important**: Ensure you can run `pwsh.exe` from a PowerShell command. If this fails, you likely need to upgrade PowerShell.
+* [Powershell 7+ (pwsh)](https://github.com/powershell/powershell) — 仅限 Windows。
+  * **注意**：请在 PowerShell 中能正常执行 `pwsh.exe`。若失败，通常需要升级 PowerShell。
 
 
 > [!WARNING]
-> Your Azure Account must have `Microsoft.Authorization/roleAssignments/write` permissions, such as [User Access Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#user-access-administrator) or [Owner](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#owner).  
+> Azure 订阅账户须具备 `Microsoft.Authorization/roleAssignments/write` 权限，例如[用户访问管理员](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#user-access-administrator)或[所有者](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#owner)。  
 
-### Starting from scratch
+### <span id="starting-from-scratch">从零开始</span>
 
-You can clone this repo and change directory to the root of the repo. Or you can run `azd init -t Azure-Samples/agent-openai-java-banking-assistant`.
+可克隆本仓库并进入仓库根目录，或执行 `azd init -t Azure-Samples/agent-openai-java-banking-assistant`。
 
-Once you have the project available locally, run the following commands if you don't have any pre-existing Azure services and want to start from a fresh deployment.
+在本地准备好项目后，若尚无既有 Azure 服务且希望全新部署，请依次执行：
 
-1. Run 
+1. 执行 
 
     ```shell
     azd auth login
     ```
 
-2. Run 
+2. 执行 
 
     ```shell
     azd up
     ```
     
-    * This will provision Azure resources and deploy this sample to those resources.
-    * The project has been tested with gpt4-o-mini model which is currently available in these regions: **eastus** (Default), **swedencentral**.  For an up-to-date list of regions and models, check [here](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models)
-    * The Azure Document Intelligence  new rest API is used which is currently available in these regions: **eastus**(Default), **westus2**, **westeurope**. More info [here](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/sdk-overview-v4-0?view=doc-intel-4.0.0&tabs=csharp)
+    * 将创建 Azure 资源并将本示例部署到这些资源。
+    * 本项目在 **eastus**（默认）、**swedencentral** 等区域的 gpt4-o-mini 模型上测试通过。区域与模型最新列表见[此处](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models)。
+    * 使用 Azure 文档智能新版 REST API，当前可用区域：**eastus**（默认）、**westus2**、**westeurope**。详见[此处](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/sdk-overview-v4-0?view=doc-intel-4.0.0&tabs=csharp)。
 
-3. After the application has been successfully deployed you will see a web app URL printed to the console.  Click that URL to interact with the application in your browser.  
+3. 部署成功后，控制台会打印 Web 应用 URL，在浏览器中打开即可使用。
 
-It will look like the following:
+示意如下：
 
-!['Output from running azd up'](docs/assets/azd-success.png)
-
-
-### Deploying with existing Azure resources
-
-If you already have existing Azure resources, you can re-use those by setting `azd` environment values.
-
-#### Existing resource group
-
-1. Run `azd env set AZURE_RESOURCE_GROUP {Name of existing resource group}`
-2. Run `azd env set AZURE_LOCATION {Location of existing resource group (i.e eastus2)}`
-
-#### Existing OpenAI resource
-
-1. Run `azd env set AZURE_OPENAI_SERVICE {Name of existing OpenAI service}`
-2. Run `azd env set AZURE_OPENAI_RESOURCE_GROUP {Name of existing resource group that OpenAI service is provisioned to}`
-3. Run `azd env set AZURE_OPENAI_SERVICE_LOCATION {Location of existing resource (i.e eastus2)}`. Only needed if your OpenAI resource is in a different location than the one you'll pick for the `azd up` step.
-4. Run `azd env set AZURE_OPENAI_CHATGPT_DEPLOYMENT {Name of existing ChatGPT deployment}`. Only needed if your ChatGPT deployment is not the default 'gpt4-o-mini'.
-
-#### Existing Azure Document Intelligence
-
-1. Run `azd env set AZURE_DOCUMENT_INTELLIGENCE_SERVICE {Name of existing Azure Document Intelligence}`
-2. Run `azd env set AZURE_DOCUMENT_INTELLIGENCE_RESOURCE_GROUP {Name of existing resource group with Azure Document Intelligence service}`
-3. If that resource group is in a different location than the one you'll pick for the `azd up` step,
-   then run `azd env set AZURE_DOCUMENT_INTELLIGENCE_RESOURCE_GROUP_LOCATION {Location of existing service}`
-
-#### Other existing Azure resources
-
-You can also use existing Form Recognizer and Storage Accounts. See `./infra/main.parameters.json` for list of environment variables to pass to `azd env set` to configure those existing resources.
-
-#### Provision remaining resources
-
-Now you can run `azd up`, following the steps in [Deploying from scratch](#deploying-from-scratch) above.
-That will both provision resources and deploy the code.
+!['运行 azd up 的输出'](docs/assets/azd-success.png)
 
 
-### Redeploying
+### 使用既有 Azure 资源部署
 
-If you've only changed the backend/frontend code in the `app` folder, then you don't need to re-provision the Azure resources. You can just run:
+若已有 Azure 资源，可通过设置 `azd` 环境变量复用。
+
+#### 既有资源组
+
+1. 执行 `azd env set AZURE_RESOURCE_GROUP {现有资源组名称}`
+2. 执行 `azd env set AZURE_LOCATION {现有资源组所在区域，如 eastus2}`
+
+#### 既有 OpenAI 资源
+
+1. 执行 `azd env set AZURE_OPENAI_SERVICE {现有 OpenAI 服务名称}`
+2. 执行 `azd env set AZURE_OPENAI_RESOURCE_GROUP {OpenAI 服务所在资源组名称}`
+3. 执行 `azd env set AZURE_OPENAI_SERVICE_LOCATION {现有资源所在区域，如 eastus2}`。若 OpenAI 与 `azd up` 所选区域不同，则需要设置此项。
+4. 执行 `azd env set AZURE_OPENAI_CHATGPT_DEPLOYMENT {现有 ChatGPT 部署名称}`。若部署名不是默认的 `gpt4-o-mini`，则需要设置。
+
+#### 既有 Azure 文档智能
+
+1. 执行 `azd env set AZURE_DOCUMENT_INTELLIGENCE_SERVICE {现有 Azure 文档智能服务名称}`
+2. 执行 `azd env set AZURE_DOCUMENT_INTELLIGENCE_RESOURCE_GROUP {包含该服务的资源组名称}`
+3. 若该资源组与 `azd up` 将选区域不同，再执行 `azd env set AZURE_DOCUMENT_INTELLIGENCE_RESOURCE_GROUP_LOCATION {该服务所在区域}`
+
+#### 其他既有 Azure 资源
+
+也可复用既有表单识别器与存储账户等。需向 `azd env set` 传入的环境变量列表见 `./infra/main.parameters.json`。
+
+#### 创建其余资源
+
+现在可执行 `azd up`，步骤与上文[从零开始](#starting-from-scratch)相同，将同时完成资源创建与代码部署。
+
+
+### 重新部署
+
+若仅修改了 `app` 文件夹内的前后端代码，无需重新创建 Azure 资源，只需执行：
 
 ```shell
 azd deploy
 ```
 
-If you've changed the infrastructure files (`infra` folder or `azure.yaml`), then you'll need to re-provision the Azure resources. You can do that by running:
+若修改了基础设施（`infra` 文件夹或 `azure.yaml`），需要重新预配资源，可执行：
 
 ```shell
 azd up
 ```
  > [!WARNING]
- > When you run `azd up` multiple times to redeploy infrastructure, make sure to set the following parameters in `infra/main.parameters.json` to `true` to avoid container apps images from being overridden with default "mcr.microsoft.com/azuredocs/containerapps-helloworld" image:
+ > 多次执行 `azd up` 重新部署基础设施时，请在 `infra/main.parameters.json` 中将下列参数设为 `true`，以免容器应用镜像被默认的 `mcr.microsoft.com/azuredocs/containerapps-helloworld` 覆盖：
 
 ```json
  "copilotAppExists": {
@@ -237,71 +235,71 @@ azd up
     }
 ```
 
-### Running locally
+### 本地运行
 
-1. Run
+1. 执行
 
     ```shell
     az login
     ```
 
-2. Change dir to `app`
+2. 进入 `app` 目录
 
     ```shell
     cd app
     ```
 
-3. Run the `./start-compose.ps1` (Windows) or `./start-compose.sh` (Linux/Mac) scripts or run the "VS Code Task: Start App" to start the project locally.
-4. Wait for the docker compose to start all the containers (web, api, indexer) and refresh your browser to [http://localhost](http://localhost)
+3. 运行 `./start-compose.ps1`（Windows）或 `./start-compose.sh`（Linux/Mac），或在 VS Code 中运行任务 “Start App”，在本地启动项目。
+4. 等待 docker compose 启动所有容器（web、api、indexer 等），刷新浏览器访问 [http://localhost](http://localhost)
 
 
-## Guidance
+## <span id="guidance">使用说明</span>
 
-### Testing different gpt4 models and versions
-The default LLM used in this project is *gpt-4o-mini*. It's a cost-efficient small model with enhanced planning, reasoning capabilities which are required by this use case to reliably select the right agent based on the chat conversation and to properly handle tools call.However, in case of long chat or some words, the model might fail sometimes to detect the right user intent especially when he/she asks to pay a bill based on image upload. Based on our tests *gpt4-o* provides better results but it's more expensive and slower. To read more about the models and prices, check [here](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/). 
+### 试用不同 gpt4 模型与版本
+本项目默认 LLM 为 *gpt-4o-mini*：成本较低的小型模型，具备较强的规划与推理能力，便于根据对话选择正确智能体并可靠调用工具。但在长对话或部分措辞下，模型偶发无法准确识别意图（尤其在上传图片要求代付账单时）。测试中 *gpt-4o* 效果更好，但更贵、更慢。模型与定价详见[此处](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/)。
 
-You can test different models and versions by changing the , `AZURE_OPENAI_CHATGPT_MODEL`, `AZURE_OPENAI_CHATGPT_VERSION` and `AZURE_OPENAI_CHATGPT_DEPLOYMENT` environment variable to the desired model like below:
+可将 `AZURE_OPENAI_CHATGPT_MODEL`、`AZURE_OPENAI_CHATGPT_VERSION`、`AZURE_OPENAI_CHATGPT_DEPLOYMENT` 环境变量改为目标模型，例如：
 
 ```shell
 azd env set AZURE_OPENAI_CHATGPT_MODEL gpt-4o
 azd env set AZURE_OPENAI_CHATGPT_VERSION 2024-05-13
 azd env set AZURE_OPENAI_CHATGPT_DEPLOYMENT gpt-4o
 ```
-### Enabling Application Insights
+### 启用 Application Insights
 
-Applications Insights is enabled by default. It allows to investigate each request tracing along with the logging of errors.
+默认已启用 Application Insights，可查看每个请求的追踪与错误日志。
 
-If you want to disable it set the `AZURE_USE_APPLICATION_INSIGHTS` variable to false before running `azd up`
+若需禁用，在运行 `azd up` 前将 `AZURE_USE_APPLICATION_INSIGHTS` 设为 false：
 
-1. Run `azd env set AZURE_USE_APPLICATION_INSIGHTS false`
-1. Run `azd up`
+1. 执行 `azd env set AZURE_USE_APPLICATION_INSIGHTS false`
+1. 执行 `azd up`
 
-To see the performance data, go to the Application Insights resource in your resource group, click on the "Investigate -> Performance" blade and navigate to any HTTP request to see the timing data.
-To inspect the performance of chat requests, use the "Drill into Samples" button to see end-to-end traces of all the API calls made for any chat request.
-Under "Trace & Events" panel you can review custom Java informational logs to better understand content of OpenAI requests and responses.
+查看性能数据：在资源组中打开 Application Insights 资源，进入 “调查 → 性能”，选择任意 HTTP 请求查看耗时。
+分析聊天请求性能：使用 “深入分析示例” 查看单次聊天触发的端到端 API 调用追踪。
+在 “跟踪和事件” 面板可查看自定义 Java 信息日志，便于理解 OpenAI 请求与响应内容。
 
-![Tracing screenshot](docs/assets/transaction-tracing.png)
+![追踪截图](docs/assets/transaction-tracing.png)
 
-To see any exceptions and server errors, navigate to the "Investigate -> Failures" blade and use the filtering tools to locate a specific exception. You can see Java stack traces on the right-hand side.
+查看异常与服务器错误：进入 “调查 → 失败”，用筛选定位具体异常；右侧可查看 Java 堆栈。
 
-### Enabling authentication
+### 启用身份验证
 
-By default, the web app on ACA will have no authentication or access restrictions enabled, meaning anyone with routable network access to the web app can chat with your personal assistant.You can require authentication to your Microsoft Entra by following the [Add app authentication](https://learn.microsoft.com/en-us/azure/container-apps/authentication) tutorial and set it up against the deployed web app.
+默认情况下，部署在 ACA 上的 Web 应用不启用身份验证与访问限制，任何能路由到该应用的人都可以使用个人助手。可按 [添加应用身份验证](https://learn.microsoft.com/en-us/azure/container-apps/authentication) 教程，对接到 Microsoft Entra，为已部署的 Web 应用启用登录要求。
 
 
-To then limit access to a specific set of users or groups, you can follow the steps from [Restrict your Microsoft Entra app to a set of users](https://learn.microsoft.com/entra/identity-platform/howto-restrict-your-app-to-a-set-of-users) by changing "Assignment Required?" option under the Enterprise Application, and then assigning users/groups access.  Users not granted explicit access will receive the error message -AADSTS50105: Your administrator has configured the application <app_name> to block users 
+若需仅限特定用户或组访问，可参考[将 Microsoft Entra 应用限制为特定用户集](https://learn.microsoft.com/entra/identity-platform/howto-restrict-your-app-to-a-set-of-users)：在企业应用程序中将 “需要分配？” 设为是，再分配用户/组。未获授权的用户将收到错误 AADSTS50105：管理员已将应用程序 <app_name> 配置为阻止用户访问。
 
-### App Continuous Integration with GitHub Actions
+### 使用 GitHub Actions 的应用持续集成
 
-1. **Create a Service Principal for the github action pipeline**
+1. **为 GitHub Action 管道创建服务主体**
 
-    Use [az ad sp create-for-rbac](https://learn.microsoft.com/en-us/cli/azure/ad/sp#az_ad_sp_create_for_rbac) to create the service principal:
+    使用 [az ad sp create-for-rbac](https://learn.microsoft.com/en-us/cli/azure/ad/sp#az_ad_sp_create_for_rbac) 创建服务主体：
     
     ```bash
     groupId=$(az group show --name <resource-group-name>  --query id --output tsv)
     az ad sp create-for-rbac --name "agent-openai-java-banking-assistant-pipeline-spi" --role contributor --scope $groupId --sdk-auth
     ```
-    Output is similar to:
+    输出类似：
     
     ```json
     {
@@ -314,112 +312,105 @@ To then limit access to a specific set of users or groups, you can follow the st
     "activeDirectoryGraphResourceId": "https://graph.windows.net/",
     "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
     "galleryEndpointUrl": "https://gallery.azure.com/",
-    "managementEndpointUrl": "https://management.core.windows.net/"
+    "managementEndpointUrl": "https://management.core.windows.net"
     } 
     ```
     
-    Save the JSON output because it is used in a later step. Also, take note of the clientId, which you need to update the service principal in the next section.
+    请保存完整 JSON，后续步骤会用到。并记下 clientId，下一节更新服务主体时需要。
 
-2. **Assign ACRPush permission to service Principal**
+2. **为服务主体分配 ACRPush 权限**
    
-   This step enables the GitHub workflow to use the service principal to [authenticate with your container registry](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-auth-service-principal) and to push a Docker image.
-   Get the resource ID of your container registry. Substitute the name of your registry in the following az acr show command:
+   此步骤使 GitHub 工作流能以该服务主体[登录容器注册表](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-auth-service-principal)并推送 Docker 镜像。
+   获取容器注册表资源 ID，将下列命令中的注册表名替换为您的注册表名：
    ```bash
    registryId=$(az acr show --name <registry-name> --resource-group <resource-group-name> --query id --output tsv)
     ```
 
-   Use [az role assignment create](https://learn.microsoft.com/en-us/cli/azure/role/assignment#az_role_assignment_create) to assign the AcrPush role, which gives push and pull access to the registry. Substitute the client ID of your service principal:
+   使用 [az role assignment create](https://learn.microsoft.com/en-us/cli/azure/role/assignment#az_role_assignment_create) 分配 AcrPush 角色（推送与拉取）。将服务主体的客户端 ID 代入：
    ```bash
    az role assignment create --assignee <ClientId> --scope $registryId --role AcrPush
    ```
 
-3. **Add the service principal to your GitHub environment secrets**
+3. **将服务主体加入 GitHub 环境密钥**
 
- - Go to your forked repository in GitHub and create an [environment]((https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment)) called 'Development' (yes this is the exact name; don't change it). If you want to change the environment name (also adding new branches and environments, change the current branch/env mapping) you can do that, but make sure to change the pipeline code accordingly in `.github/workflows/azure-dev.yml`.
- - Create 'Development' environment [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) as below:
-    | Secret                | Value                                                                                      |
+ - 在 GitHub 上打开您 fork 的仓库，创建名为 `Development` 的[环境](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment)（名称须完全一致，勿改）。若要更改环境名称或分支映射，请同步修改 `.github/workflows/azure-dev.yml` 中的管道配置。
+ - 在 `Development` 环境中创建如下[密钥](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)：
+    | 密钥                    | 取值                                                                                       |
     |-----------------------|--------------------------------------------------------------------------------------------|
-    | AZURE_CREDENTIALS     | The entire JSON output from the service principal creation step                            |
-    | SPI_CLIENT_ID         | The service principal client id used as username to login to Azure Container Registry      |
-    | SPI_CLIENT_SECRET     | The service principal client secret used as password to login to Azure Container Registry  |
- - Create 'Development' [environment variables](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-an-environment) as below:
-    | Variable                | Value                                                                                        |
+    | AZURE_CREDENTIALS     | 创建服务主体时输出的完整 JSON                                                            |
+    | SPI_CLIENT_ID         | 服务主体客户端 ID，用作登录 Azure 容器注册表的用户名                                      |
+    | SPI_CLIENT_SECRET     | 服务主体客户端密钥，用作登录 Azure 容器注册表的密码                                      |
+ - 在 `Development` 环境中创建如下[环境变量](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-an-environment)：
+    | 变量                    | 取值                                                                                       |
     |---------------------------|--------------------------------------------------------------------------------------------|
-    | ACR_NAME                  | The name of the Azure Container registry                                                   |
-    | RESOURCE_GROUP            | The name of the resource group where your Azure Container Environment has been deployed    |
- - Create [repository variables](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables#creating-configuration-variables-for-a-repository) as below:
-    | Variable                | Value                                                                                        |
+    | ACR_NAME                  | Azure 容器注册表名称                                                                       |
+    | RESOURCE_GROUP            | Azure 容器环境所在资源组名称                                                               |
+ - 在仓库中创建如下[仓库变量](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables#creating-configuration-variables-for-a-repository)：
+    | 变量                    | 取值                                                                                       |
     |---------------------------|--------------------------------------------------------------------------------------------|
-    | ACA_DEV_ENV_NAME                  | The name of the Azure Container Apps Environment                                       |
-    | COPILOT_ACA_DEV_APP_NAME      | The container app name for the copilot orchestrator app                                    |
-    | WEB_ACA_DEV_APP_NAME          | The container app name for the web frontend  app                                           |
-    | ACCOUNTS_ACA_DEV_APP_NAME     | The container app name for the business account api                                        |
-    | PAYMENTS_ACA_DEV_APP_NAME     | The container app name for the business payment api                                        |
-    | TRANSACTIONS_ACA_DEV_APP_NAME | The container app name for the business payment api                                        |
+    | ACA_DEV_ENV_NAME                  | Azure 容器应用环境名称                                                                 |
+    | COPILOT_ACA_DEV_APP_NAME      | 副驾编排器容器应用名称                                                                        |
+    | WEB_ACA_DEV_APP_NAME          | Web 前端容器应用名称                                                                        |
+    | ACCOUNTS_ACA_DEV_APP_NAME     | 业务账户 API 容器应用名称                                                                  |
+    | PAYMENTS_ACA_DEV_APP_NAME     | 业务支付 API 容器应用名称                                                                  |
+    | TRANSACTIONS_ACA_DEV_APP_NAME | 业务交易 API 容器应用名称                                                                  |
 
 
-### Cost estimation
+### 成本估算
 
-Pricing varies per region and usage, so it isn't possible to predict exact costs for your usage.
-However, you can try the [Azure pricing calculator](https://azure.com/e/8ffbe5b1919c4c72aed89b022294df76) for the resources below.
+定价因区域与用量而异，无法给出您环境下的精确金额。
+可对下列资源使用 [Azure 定价计算器](https://azure.com/e/8ffbe5b1919c4c72aed89b022294df76) 估算。
 
-- Azure Containers App: Consumption workload profile with 4 CPU core and 8 GB RAM. Pricing per vCPU and Memory. [Pricing](https://azure.microsoft.com/en-us/pricing/details/container-apps/)
-- Azure OpenAI: Standard tier, ChatGPT and Ada models. Pricing per 1K tokens used, and at least 1K tokens are used per question. [Pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/)
-- Azure Document Intelligence: SO (Standard) tier using pre-built layout. [Pricing](https://azure.microsoft.com/pricing/details/form-recognizer/)
+- Azure 容器应用：消耗型工作负载配置文件，4 vCPU、8 GB 内存，按 vCPU 与内存计费。[定价](https://azure.microsoft.com/en-us/pricing/details/container-apps/)
+- Azure OpenAI：标准层，ChatGPT 与 Ada 等模型，按每 1K token 计费，每个问题至少约 1K token。[定价](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/)
+- Azure 文档智能：SO（标准）层，预建版式。[定价](https://azure.microsoft.com/pricing/details/form-recognizer/)
 
-- Azure Blob Storage: Standard tier with ZRS (Zone-redundant storage). Pricing per storage and read operations. [Pricing](https://azure.microsoft.com/pricing/details/storage/blobs/)
-- Azure Monitor: Pay-as-you-go tier. Costs based on data ingested. [Pricing](https://azure.microsoft.com/pricing/details/monitor/)
+- Azure Blob 存储：标准层，ZRS（区域冗余存储），按存储与读操作计费。[定价](https://azure.microsoft.com/pricing/details/storage/blobs/)
+- Azure Monitor：即用即付，按采集数据量计费。[定价](https://azure.microsoft.com/pricing/details/monitor/)
 
-The first 180,000 vCPU-seconds, 360,000 GiB-seconds, and 2 million requests each month are free for ACA. To reduce costs, you can switch to free SKUs Document Intelligence by changing the parameters file under the `infra` folder. There are some limits to consider; for example, the free resource only analyzes the first 2 pages of each document. 
+ACA 每月免费提供前 180,000 vCPU·秒、360,000 GiB·秒与 200 万次请求。若要降低成本，可修改 `infra` 下参数文件改用文档智能免费 SKU；需注意限制，例如免费资源仅分析每份文档前 2 页。
 
-⚠️ To avoid unnecessary costs, remember to take down your app if it's no longer in use,
-either by deleting the resource group in the Portal or running `azd down`.
+⚠️ 为避免产生不必要费用，应用不再使用时请删除或运行 `azd down`，或在门户中删除资源组。
 
 
-## Resources
+## <span id="resources">资料</span>
 
-Here are some resources to learn more about multi-agent architectures and technologies used in this sample:
+进一步了解本示例中的多智能体架构与相关技术，可参考：
 
-- [LangGraph for Java. A library for building stateful, multi-actor applications with LLMs][Langgraph4j]
-- [Generative AI For Beginners](https://github.com/microsoft/generative-ai-for-beginners)
-- [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/overview)
-- [OpenAI's Bet on a Cognitive Architecture](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/)
-- [THE LANDSCAPE OF EMERGING AI AGENT ARCHITECTURES FOR REASONING, PLANNING, AND TOOL CALLING: A SURVEY](https://arxiv.org/pdf/2404.11584)
-- [MicroAgents: Exploring Agentic Architecture with Microservices](https://devblogs.microsoft.com/semantic-kernel/microagents-exploring-agentic-architecture-with-microservices/)
-- [Chat + Enterprise data with Azure OpenAI and Azure AI Search](https://github.com/Azure-Samples/azure-search-openai-java)
-- [SK Agents Overview and High Level Design (.net)](https://github.com/microsoft/semantic-kernel/blob/ec26ce7cb70f933b52a62f0a4e1c7b98c49d590e/docs/decisions/0032-agents.md#usage-patterns)
+- [适用于 Java 的 LangGraph：用 LLM 构建有状态、多参与者应用的库][Langgraph4j]
+- [生成式 AI 入门](https://github.com/microsoft/generative-ai-for-beginners)
+- [Azure OpenAI 服务](https://learn.microsoft.com/azure/ai-services/openai/overview)
+- [OpenAI 对认知架构的押注](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/)
+- [推理、规划与工具调用的新兴 AI 智能体架构综述](https://arxiv.org/pdf/2404.11584)
+- [MicroAgents：以微服务探索智能体架构](https://devblogs.microsoft.com/semantic-kernel/microagents-exploring-agentic-architecture-with-microservices/)
+- [Azure OpenAI 与 Azure AI 搜索实现聊天 + 企业数据](https://github.com/Azure-Samples/azure-search-openai-java)
+- [SK Agents 概述与高层设计（.NET）](https://github.com/microsoft/semantic-kernel/blob/ec26ce7cb70f933b52a62f0a4e1c7b98c49d590e/docs/decisions/0032-agents.md#usage-patterns)
 
-You can also find [more Azure AI samples here](https://github.com/Azure-Samples/azureai-samples).
+更多 Azure AI 示例见 [azureai-samples](https://github.com/Azure-Samples/azureai-samples)。
 
-## FAQ
+## <span id="faq">常见问题</span>
 
-You can find answers to frequently asked questions in the [FAQ](./docs/faq.md).
+常见问题解答见 [FAQ](./docs/faq.md)。
 
-## Troubleshooting
+## <span id="troubleshooting">疑难解答</span>
 
-If you have any issue when running or deploying this sample, please check the [troubleshooting guide](./docs/troubleshooting.md). If you can't find a solution to your problem, please [open an issue](https://github.com/Azure-Samples/agent-openai-java-banking-assistant/issues) in this repository.
+运行或部署本示例如遇问题，请先查看[疑难解答指南](./docs/troubleshooting.md)。若仍无法解决，请在本仓库[提交 issue](https://github.com/Azure-Samples/agent-openai-java-banking-assistant/issues)。
 
-## Contributing
+## 参与贡献
 
-This project welcomes contributions and suggestions. Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+欢迎对本项目提交贡献与建议。多数贡献需要您签署贡献者许可协议（CLA），声明您有权且实际授予我们使用您贡献的权利。详情见 https://cla.opensource.microsoft.com。
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+提交拉取请求时，CLA 机器人会自动判断是否需要 CLA，并更新 PR 状态（如检查、评论）。按机器人说明操作即可；在使用我们 CLA 的所有仓库中，通常只需签署一次。
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+本项目采用 [Microsoft 开源行为准则](https://opensource.microsoft.com/codeofconduct/)。
+更多信息见[行为准则常见问题](https://opensource.microsoft.com/codeofconduct/faq/)，或发邮件至 [opencode@microsoft.com](mailto:opencode@microsoft.com)。
 
-## Trademarks
+## 商标
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft
-trademarks or logos is subject to and must follow
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
-Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
-Any use of third-party trademarks or logos are subject to those third-party's policies.
+本项目可能包含项目、产品或服务的商标或标识。使用 Microsoft 商标或标识须遵守
+[Microsoft 商标与品牌准则](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general)。
+在修改版本中使用 Microsoft 商标或标识不得引起混淆或暗示 Microsoft 赞助。
+第三方商标或标识的使用遵循各自政策。
 
 
 [MCP]: https://modelcontextprotocol.io
